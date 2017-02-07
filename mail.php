@@ -4,7 +4,6 @@ require 'vendor/autoload.php';
 $curl = curl_init();
 $name = $_POST['name']; 
 $email = $_POST['email']; 
-$subject = $_POST['subject']; 
 $message = $_POST['message'];
 $my_env_var = getenv('SENDGRID_KEY');
 curl_setopt_array($curl, array(
@@ -15,7 +14,7 @@ curl_setopt_array($curl, array(
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\n  \"personalizations\": [\n    {\n      \"to\": [\n        {\n          \"email\": \"galinsky.dennis@gmail.com\"\n        }\n      ],\n      \"subject\": \"New Contact\"\n    }\n  ],\n  \"from\": {\n    \"email\": \"galinsky.dennis@gmail.com\"\n  },\n  \"content\": [\n    {\n      \"type\": \"text/html\",\n      \"value\": \"$name<br>$email<br>$subject<br>$message\"\n    }\n  ]\n}",
+  CURLOPT_POSTFIELDS => "{\n  \"personalizations\": [\n    {\n      \"to\": [\n        {\n          \"email\": \"galinsky.dennis@gmail.com\"\n        }\n      ],\n      \"subject\": \"New Contact\"\n    }\n  ],\n  \"from\": {\n    \"email\": \"galinsky.dennis@gmail.com\"\n  },\n  \"content\": [\n    {\n      \"type\": \"text/html\",\n      \"value\": \"$name<br>$email<br>$message\"\n    }\n  ]\n}",
   CURLOPT_HTTPHEADER => array(
     "authorization: Bearer $my_env_var",
     "cache-control: no-cache",
